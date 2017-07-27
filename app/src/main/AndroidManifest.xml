@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="com.fire.broadcastdemo"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.CustomActivity"/>
+        <activity android:name=".ui.SystemActivity"/>
+        <activity android:name=".ui.LocalActivity"/>
+        <activity android:name=".ui.StickyActivity"/>
+        <activity android:name=".ui.OrderedActivity"/>
+
+        <!--静态注册广播接收器，该广播用于监听wifi和移动数据的打开和关闭-->
+
+        <!--android:name：broadcastReceiver的类名-->
+
+        <!--android:enabled 广播接收器是否启用-->
+
+        <!--android:exported 能否接收其他App的发出的广播
+        默认值是由receiver中有无intent-filter决定的：如果有intent-filter，默认值为true，否则为false-->
+
+        <!--android:permission：设置广播发送方的权限，具备相应权限的发送方发送的广播可以被该receiver接收。-->
+
+        <!--android:process：设置receiver运行时所处的进程的名称。设置服务所在进程名称是由用户决定的，
+        当进程名以冒号":"开始时表示该进程是应用的私有进程，这时候会把进程名附加到包名后面形成新的进程名。
+        当进程名是以小写字母开头时，则表示这个服务将运行在一个以这个名字命名的全局的进程中，
+        但前提是该进程必须具备相应的权限。-->
+
+        <receiver android:name=".broadcast.NetworkConnectChangeReceiver">
+
+            <!--android:priority 优先级  他决定该广播的级别，级别数值是在 -1000 到 1000 之间 , 值越大 , 优先级越高-->
+            <!--此处有intent-filter 则默认接收其他app发出的广播-->
+            <intent-filter android:priority="1000">
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!--耳机的插拔广播此处注册是没有效果的，必须使用动态注册-->
+        <receiver android:name=".broadcast.PlugReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.HEADSET_PLUG"/>
+            </intent-filter>
+        </receiver>
+
+
+        <receiver android:name=".broadcast.OrderedReceiverOne">
+            <intent-filter android:priority="3">
+                <action android:name="OrderedActivity"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".broadcast.OrderedReceiverTwo" android:exported="false">
+            <intent-filter android:priority="2">
+                <action android:name="OrderedActivity"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+
+</manifest>
