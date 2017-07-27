@@ -47,4 +47,18 @@
         android:textAllCaps="false"
         android:onClick="LocalReceiver"
         android:text="App应用内广播"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:onClick="LocalService"
+        android:text="本地服务"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:onClick="LinkService"
+        android:text="可通信的服务"/>
 </LinearLayout>

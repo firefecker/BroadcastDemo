@@ -67,6 +67,22 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this,LocalActivity.class));
     }
 
+    /**
+     * 本地服务
+     * @param view
+     */
+    public void LocalService(View view) {
+        startActivity(new Intent(this,LocalServiceActivity.class));
+    }
+
+    /**
+     * 可通信的服务
+     * @param view
+     */
+    public void LinkService(View view) {
+
+    }
+
     // 跳转到无线网络设置界面
 //    startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
     // 跳转到无限wifi网络设置界面

@@ -26,6 +26,7 @@
         <activity android:name=".ui.LocalActivity"/>
         <activity android:name=".ui.StickyActivity"/>
         <activity android:name=".ui.OrderedActivity"/>
+        <activity android:name=".ui.LocalServiceActivity"/>
 
         <!--静态注册广播接收器，该广播用于监听wifi和移动数据的打开和关闭-->
 
