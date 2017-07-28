@@ -6,18 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.fire.broadcastdemo.R;
-import com.fire.broadcastdemo.service.LocalService;
+import com.fire.broadcastdemo.service.ReceptionService;
 
 /**
- * Created by Administrator on 2017/7/27.
- * 远程服务与本地服务最大的区别是：远程Service与调用者不在同一个进程里（即远程Service是运行在另外一个进程）；而本地服务则是与调用者运行在同一个进程里
+ * Created by Administrator on 2017/7/28.
+ * 前台的service
+ *
  */
-public class LocalServiceActivity extends AppCompatActivity {
+public class ReceptionServiceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_local_service);
+        setContentView(R.layout.activity_reception_service);
     }
 
     /**
@@ -25,7 +26,7 @@ public class LocalServiceActivity extends AppCompatActivity {
      * @param view
      */
     public void startService(View view) {
-        Intent startIntent = new Intent(this, LocalService.class);
+        Intent startIntent = new Intent(this, ReceptionService.class);
         startService(startIntent);
     }
 
@@ -34,7 +35,7 @@ public class LocalServiceActivity extends AppCompatActivity {
      * @param view
      */
     public void stopService(View view) {
-        Intent stopIntent = new Intent(this, LocalService.class);
+        Intent stopIntent = new Intent(this, ReceptionService.class);
         stopService(stopIntent);
     }
 }

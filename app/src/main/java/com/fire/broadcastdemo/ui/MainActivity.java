@@ -80,7 +80,31 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void LinkService(View view) {
+        startActivity(new Intent(this,LinkServiceActivity.class));
+    }
 
+    /**
+     * 前台Service
+     * @param view
+     */
+    public void ReceptionService(View view) {
+        startActivity(new Intent(this,ReceptionServiceActivity.class));
+    }
+
+    /**
+     * 远程Service IPC和AIDL
+     * @param view
+     */
+    public void RemoteService(View view) {
+        startActivity(new Intent(this,RemoteServiceActivity.class));
+    }
+
+    /**
+     * IntentService
+     * @param view
+     */
+    public void IntentServices(View view) {
+        startActivity(new Intent(this,IntentServiceActivity.class));
     }
 
     // 跳转到无线网络设置界面

@@ -61,4 +61,25 @@
         android:textAllCaps="false"
         android:onClick="LinkService"
         android:text="可通信的服务"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:onClick="ReceptionService"
+        android:text="前台服务"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:onClick="RemoteService"
+        android:text="远程服务"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:onClick="IntentServices"
+        android:text="IntentService"/>
 </LinearLayout>

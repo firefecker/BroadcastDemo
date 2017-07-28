@@ -14,19 +14,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name="com.fire.broadcastdemo.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CustomActivity"/>
-        <activity android:name=".ui.SystemActivity"/>
-        <activity android:name=".ui.LocalActivity"/>
-        <activity android:name=".ui.StickyActivity"/>
-        <activity android:name=".ui.OrderedActivity"/>
-        <activity android:name=".ui.LocalServiceActivity"/>
+        <activity android:name="com.fire.broadcastdemo.ui.CustomActivity"/>
+        <activity android:name="com.fire.broadcastdemo.ui.SystemActivity"/>
+        <activity android:name="com.fire.broadcastdemo.ui.LocalActivity"/>
+        <activity android:name="com.fire.broadcastdemo.ui.StickyActivity"/>
+        <activity android:name="com.fire.broadcastdemo.ui.OrderedActivity"/>
+        <activity android:name="com.fire.broadcastdemo.ui.LocalServiceActivity"/>
+        <activity android:name="com.fire.broadcastdemo.ui.LinkServiceActivity"/>
+        <activity android:name="com.fire.broadcastdemo.ui.ReceptionServiceActivity"/>
+        <activity android:name="com.fire.broadcastdemo.ui.RemoteServiceActivity"/>
+        <activity android:name=".ui.IntentServiceActivity"/>
 
         <!--静态注册广播接收器，该广播用于监听wifi和移动数据的打开和关闭-->
 
@@ -44,7 +48,7 @@
         当进程名是以小写字母开头时，则表示这个服务将运行在一个以这个名字命名的全局的进程中，
         但前提是该进程必须具备相应的权限。-->
 
-        <receiver android:name=".broadcast.NetworkConnectChangeReceiver">
+        <receiver android:name="com.fire.broadcastdemo.broadcast.NetworkConnectChangeReceiver">
 
             <!--android:priority 优先级  他决定该广播的级别，级别数值是在 -1000 到 1000 之间 , 值越大 , 优先级越高-->
             <!--此处有intent-filter 则默认接收其他app发出的广播-->
@@ -56,24 +60,53 @@
         </receiver>
 
         <!--耳机的插拔广播此处注册是没有效果的，必须使用动态注册-->
-        <receiver android:name=".broadcast.PlugReceiver" android:enabled="true">
+        <receiver android:name="com.fire.broadcastdemo.broadcast.PlugReceiver" android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.HEADSET_PLUG"/>
             </intent-filter>
         </receiver>
 
 
-        <receiver android:name=".broadcast.OrderedReceiverOne">
+        <receiver android:name="com.fire.broadcastdemo.broadcast.OrderedReceiverOne">
             <intent-filter android:priority="3">
                 <action android:name="OrderedActivity"/>
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".broadcast.OrderedReceiverTwo" android:exported="false">
+        <receiver android:name="com.fire.broadcastdemo.broadcast.OrderedReceiverTwo" android:exported="false">
             <intent-filter android:priority="2">
                 <action android:name="OrderedActivity"/>
             </intent-filter>
         </receiver>
+
+        <!--注册一个service。注意四大组件除了broadcastreceiver可以在代码注册以外
+        (也可以在manifest里面注册)，其他的都必须在manifest里面注册-->
+        <service android:name="com.fire.broadcastdemo.service.LocalService"/>
+
+        <service android:name="com.fire.broadcastdemo.service.LinkService"/>
+
+        <service android:name="com.fire.broadcastdemo.service.ReceptionService"/>
+
+        <!--android:process=":remote"  将本地服务设置成远程服务-->
+        <!--android:exported="true"  设置可被其他进程调用-->
+        <service
+            android:name="com.fire.broadcastdemo.service.AIDLService"
+            android:process=":remote"
+            android:exported="true">
+
+            <!--该Service可以响应带有com.fire.broadcastdemo.AIDL_Service这个action的Intent。
+            此处Intent的action必须写成“服务器端包名.aidl文件名-->
+            <intent-filter>
+                <action android:name="com.fire.broadcastdemo.AIDL_Service"/>
+            </intent-filter>
+
+        </service>
+
+        <service android:name=".service.MyIntentService">
+            <intent-filter>
+                <action android:name="com.fire.intentservice"/>
+            </intent-filter>
+        </service>
     </application>
 
 

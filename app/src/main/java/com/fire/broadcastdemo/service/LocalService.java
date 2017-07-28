@@ -19,6 +19,11 @@ import android.util.Log;
  *
  * 步骤4：在AndroidManifest.xml里注册Service
  *
+ *
+ * 通过startService开启服务，通过stopService停止服务
+ *
+ * 这是Service最基础的用法，但只能单机使用，即无法与Activity通信
+ *
  */
 
 public class LocalService extends Service {
@@ -27,6 +32,7 @@ public class LocalService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.e("TAG","执行了onCreate()方法");
+
     }
 
     @Override
